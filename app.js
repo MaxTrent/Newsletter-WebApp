@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const axios = require("axios");
 const { response } = require("express");
+require('dotenv').config();
 
 const app = express();
 
@@ -38,7 +39,7 @@ app.post("/", (req, res) => {
       ],
     },
     headers: {
-      Authorization: "Bearer ",
+      Authorization: `Bearer ${process.env.API_KEY}`,
     },
   };
   axios(config)
@@ -63,6 +64,4 @@ app.get("/", (req, res) => {
   res.sendFile(__dirname + "/signup.html");
 });
 
-// 9ff49a75fb45476c5cf5f617d8e7a9a3-us18
 
-// b43a2d8598
