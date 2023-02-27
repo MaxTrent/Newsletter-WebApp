@@ -9,7 +9,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static("public"));
 
-app.listen(3000, () => {
+app.listen(process.env.PORT || 3000, () => {
   console.log("Server is running on port 3000");
 });
 
@@ -25,18 +25,18 @@ app.post("/", (req, res) => {
       skip_merge_validation: false,
       skip_duplicate_check: false,
     },
-    // data: {
-    //   members: [
-    //     {
-    //       email_address: email,
-    //       status: "subscribed",
-    //       merge_fields: {
-    //         FNAME: firstName,
-    //         LNAME: lastName,
-    //       },
-    //     },
-    //   ],
-    // },
+    data: {
+      members: [
+        {
+          email_address: email,
+          status: "subscribed",
+          merge_fields: {
+            FNAME: firstName,
+            LNAME: lastName,
+          },
+        },
+      ],
+    },
     headers: {
       Authorization: "Bearer ",
     },
